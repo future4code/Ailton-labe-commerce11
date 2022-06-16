@@ -3,25 +3,4 @@
   padding: 0;
   box-sizing: border-box;
 }
-.container {
-display: flex;
-flex-direction: column;
-height: 100vh;
-}
-header {
-  height: 8%;
-  border: 1px solid black;
-}
-footer {
-  height: 8%;
-  border: 1px solid black;
-}
-
-.main-container {
-  height: 84%;
-  width: 100vw;
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
 

@@ -12,9 +12,21 @@ import Cam9 from './img/cam9-.png'
 import CarrinhoImg from './img/carrinho.png'
 import styled from 'styled-components'
 
-
+const Container = styled.div `
+display: flex;
+flex-direction: column;
+height: 100vh;
+`
+const Section = styled.section `
+  height: 84%;
+  width: 100vw;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+`
 const Header = styled.header`
-border: 1px solid blue;
+  border: 1px solid blue;
+  height: 8%;
 `
 const Filtros = styled.div`
   display: flex;
@@ -27,7 +39,6 @@ const Filtros = styled.div`
 
   }
 `
-
 const Produtos = styled.div`
   display: flex;
   border: 1px solid red;
@@ -36,7 +47,6 @@ const Produtos = styled.div`
   overflow: scroll;
   flex-wrap: wrap;
   
-
 `
 
 const Carrinho = styled.div`
@@ -51,6 +61,7 @@ const Carrinho = styled.div`
 `
 const Footer = styled.footer `
 border: 1px solid blue;
+height: 8%;
 `
 
 const Card =styled.div `
@@ -143,8 +154,8 @@ class App extends React.Component {
       imageUrl: Cam9
     },
   ],
-  valorMin: 0,
-  valorMax: 0,
+  valorMin: '',
+  valorMax: '',
   buscador: '',
   ordenador: '',
   valorTotal: 0,
@@ -180,31 +191,34 @@ class App extends React.Component {
     carrinhoNovo.push(produto);
     this.setState({addCarrinho: carrinhoNovo});
   }
-
+  
   render(){
     return (
-      <div className="container">
+      <Container>
       <Header>Logo</Header>
-      <section className="main-container">
+      <Section className="main-container">
         <Filtros>
           <h3>Filtros</h3>
           <p>Valor Minimo:</p>
           <input 
-           type="number"
-           value={this.state.valorMin} 
-            placeholder="Digite um valor mínimo" 
-            onChange={this.state.atualizaValorMin}
+          type="number"
+          value={this.state.valorMin} 
+          placeholder="Digite um valor mínimo" 
+          onChange={this.state.atualizaValorMin}
            />
           <p>Valor Maximo:</p>
           <input 
-           type="number"
-           value={this.state.valorMax} 
-            placeholder="Digite um valor mínimo" 
-            onChange={this.state.atualizaValorMax}
+          type="number"
+          value={this.state.valorMax} 
+          placeholder="Digite um valor mínimo" 
+          onChange={this.state.atualizaValorMax}
            />
           <p>Busca por Nome:</p>
           <input 
-           type="text"
+          type="text"
+          value={this.state.buscador} 
+          placeholder="Digite o nome do produto" 
+          onChange={this.state.atualizaBuscador}  
            />
 
         </Filtros>
@@ -231,9 +245,9 @@ class App extends React.Component {
           <p>Valor Total:</p>
           <button>Comprar</button>
         </Carrinho>
-      </section>
+      </Section>
       <Footer>Footer</Footer>
-    </div>
+    </Container>
   );
   };
 };
