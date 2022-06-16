@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Cam1 from './img/cam1.png'
 import Cam2 from './img/cam2-.png'
 import Cam3 from './img/cam3-.png'
@@ -8,32 +7,74 @@ import Cam5 from './img/cam5.png'
 import Cam6 from './img/cam6-.png'
 import Cam7 from './img/cam7-.png'
 import Cam8 from './img/cam8-.png'
-import Cam9 from './img/cam9-.png'
+import Lupa from './img/lupa.png' 
 import CarrinhoImg from './img/carrinho.png'
 import styled from 'styled-components'
+import Usain from './img/RoboUsain.png'
+import {createGlobalStyle} from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  margin:0 ;
+  padding: 0;
+  box-sizing: border-box;
+`
 
 const Container = styled.div `
 display: flex;
 flex-direction: column;
 height: 100vh;
 `
+
 const Section = styled.section `
-  height: 84%;
-  width: 100vw;
+  height: 70%;
+  width: 96vw;
   display: flex;
   gap: 20px;
   padding: 20px;
 `
 const Header = styled.header`
   border: 1px solid blue;
-  height: 8%;
+  height: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center
 `
+
+const InputHeather = styled.input`
+  margin-left: 250px;
+  width: 400px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+`
+
+const Button2 = styled.button`
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
+  margin-left: -90px;
+  margin-bottom: 10px;
+img{
+  width: 30px;
+}
+:hover{
+  opacity: 0.5
+}
+`
+
+const Logo = styled.img`
+width: 50px;
+margin-left: 20px;
+margin-top: 5px;
+`
+
 const Filtros = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid green;
   width: 15%;
-
+  padding-left: 8px;
   input {
     margin: 5px 15px;
 
@@ -43,7 +84,6 @@ const Produtos = styled.div`
   display: flex;
   border: 1px solid red;
   width: 70%;
-  flex-direction: column;
   overflow: scroll;
   flex-wrap: wrap;
   
@@ -54,29 +94,30 @@ const Carrinho = styled.div`
   flex-direction: column;
   border: 1px solid purple;
   width: 15%;
-
+  padding-left: 8px;
   button{
     margin: 15px;
   }
 `
 const Footer = styled.footer `
 border: 1px solid blue;
-height: 8%;
+height: 15%;
 `
 
 const Card =styled.div `
   justify-content: center;
   text-align: center;
-  margin: 15px;
+  margin: 20px 15px;
   border-radius: 15px;
   padding-bottom: 15px;
-  width: 300px;
+  width: 230px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
   background-color: white;  
   font-weight:bold;
   
 img {
   width: 85%;
+  higth: 85%;
   align-items: center;
   
 }
@@ -151,7 +192,7 @@ class App extends React.Component {
       id: 9,
       name: "Imagem 9",
       value: 900.00,
-      imageUrl: Cam9
+      imageUrl: Cam1
     },
   ],
   valorMin: '',
@@ -192,10 +233,43 @@ class App extends React.Component {
     this.setState({addCarrinho: carrinhoNovo});
   }
   
+/*   filtrosProdutos = () => {
+    return(
+      this.state.produtos
+      .filter(produto => {
+        return (
+          produto.value >= this.state.valorMin,
+          this.state.valorMin === ""
+        )
+      })
+      .filter(produto => {
+        return (
+          produto.value <= this.state.valorMax,
+          this.state.valorMax === ""
+        )
+      })
+      .filter(produto => {
+        return (produto.name
+          .toLowerCase()
+          .includes(this.state.buscador.toLowerCase())
+        )
+      })
+    )} */
+
   render(){
     return (
       <Container>
-      <Header>Logo</Header>
+      <Header> 
+        <Logo src={Usain}/>
+        <h1>Astrodev Store</h1>
+        <InputHeather 
+          type="text"
+          value={this.state.buscador} 
+          placeholder="Digite o nome do produto" 
+          onChange={this.state.atualizaBuscador}  
+           />
+        <Button2 onClick={() => this.state.atualizaBuscador}><img src= {Lupa} alt='carrinho' /></Button2>
+      </Header>
       <Section className="main-container">
         <Filtros>
           <h3>Filtros</h3>
@@ -210,21 +284,19 @@ class App extends React.Component {
           <input 
           type="number"
           value={this.state.valorMax} 
-          placeholder="Digite um valor mínimo" 
+          placeholder="Digite um valor máximo" 
           onChange={this.state.atualizaValorMax}
            />
-          <p>Busca por Nome:</p>
+{/*           <p>Busca por Nome:</p>
           <input 
           type="text"
           value={this.state.buscador} 
           placeholder="Digite o nome do produto" 
           onChange={this.state.atualizaBuscador}  
-           />
+           /> */}
 
         </Filtros>
         <Produtos>
-          <div>Produtos Card</div>
-          <div>
         {this.state.produtos.map((produto,index) => {
           return (
             <div key={index}>
@@ -232,12 +304,11 @@ class App extends React.Component {
               <img src={produto.imageUrl} alt={produto.name}/>
               <p>{produto.name}</p>
               <p>R$ {produto.value},00</p>
-              <Button onClick={() => this.adicionarCarrinho(produto)}><img src= {CarrinhoImg} /></Button>
+              <Button onClick={() => this.adicionarCarrinho(produto)}><img src={CarrinhoImg} alt='carrinho'/></Button>
               </Card>
             </div>
           )
         } ) }
-      </div>
         </Produtos>
         <Carrinho>
           <h3>Carrinho</h3>
