@@ -9,16 +9,81 @@ import Cam6 from './img/cam6-.png'
 import Cam7 from './img/cam7-.png'
 import Cam8 from './img/cam8-.png'
 import Cam9 from './img/cam9-.png'
+import CarrinhoImg from './img/carrinho.png'
 import styled from 'styled-components'
 
-const AppContainer = styled.div`
-  width: 100%;
-  border: 1px black solid
+
+const Header = styled.header`
+border: 1px solid blue;
+`
+const Filtros = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  width: 15%;
+
+  input {
+    margin: 5px 15px;
+
+  }
 `
 
-const Heather = styled.div`
-  width: 100%;
-  border: 1px black solid
+const Produtos = styled.div`
+  display: flex;
+  border: 1px solid red;
+  width: 70%;
+  flex-direction: column;
+  overflow: scroll;
+  flex-wrap: wrap;
+  
+
+`
+
+const Carrinho = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid purple;
+  width: 15%;
+
+  button{
+    margin: 15px;
+  }
+`
+const Footer = styled.footer `
+border: 1px solid blue;
+`
+
+const Card =styled.div `
+  justify-content: center;
+  text-align: center;
+  margin: 15px;
+  border-radius: 15px;
+  padding-bottom: 15px;
+  width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
+  background-color: white;  
+  font-weight:bold;
+  
+img {
+  width: 85%;
+  align-items: center;
+  
+}
+`
+
+const Button = styled.button`
+  background: none;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 11px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  img {
+    width: 30px;
+  }
 `
 
 class App extends React.Component {
@@ -114,51 +179,61 @@ class App extends React.Component {
     const carrinhoNovo = [...this.state.addCarrinho];
     carrinhoNovo.push(produto);
     this.setState({addCarrinho: carrinhoNovo});
-    console.log(carrinhoNovo);
-    console.log(addCarrinho);
   }
-
-
-
-    /* 
-    const produtoNoCarrinho = this.state.produtos.find (produto => idProduto === produto.id)
-
-/*     if(produtoNoCarrinho) { */
-/*       const novoProdutoCarrinho = this.state.addCarrinho.map(produto => {
-        if(idProduto === produto.id) {
-          return {
-            ...produto,
-            quantidade: produto.quantidade + 1
-          }
-        }
-        return produto
-      })  */
-
-/*     } else { */
-/*       const produtoAdicionar = this.state.produtos.find(produto => idProduto === produto.id) 
-  
-      const novoProdutoCarrinho = [...this.state.addCarrinho, {...produtoAdicionar, quantidade: 1}] */
-/*       this.setState({addCarrinho: novoProdutoCarrinho}) */
-    
-
 
   render(){
     return (
-    <AppContainer>
-      <Heather/>
-      <div>
+      <div className="container">
+      <Header>Logo</Header>
+      <section className="main-container">
+        <Filtros>
+          <h3>Filtros</h3>
+          <p>Valor Minimo:</p>
+          <input 
+           type="number"
+           value={this.state.valorMin} 
+            placeholder="Digite um valor mínimo" 
+            onChange={this.state.atualizaValorMin}
+           />
+          <p>Valor Maximo:</p>
+          <input 
+           type="number"
+           value={this.state.valorMax} 
+            placeholder="Digite um valor mínimo" 
+            onChange={this.state.atualizaValorMax}
+           />
+          <p>Busca por Nome:</p>
+          <input 
+           type="text"
+           />
+
+        </Filtros>
+        <Produtos>
+          <div>Produtos Card</div>
+          <div>
         {this.state.produtos.map((produto,index) => {
           return (
             <div key={index}>
+              <Card>
               <img src={produto.imageUrl} alt={produto.name}/>
               <p>{produto.name}</p>
-              <p>{produto.value}</p>
-              <button onClick={() => this.adicionarCarrinho(produto)}>Adicionar ao carrinho</button>
+              <p>R$ {produto.value},00</p>
+              <Button onClick={() => this.adicionarCarrinho(produto)}><img src= {CarrinhoImg} /></Button>
+              </Card>
             </div>
           )
         } ) }
       </div>
-    </AppContainer>
+        </Produtos>
+        <Carrinho>
+          <h3>Carrinho</h3>
+          <div>Produtos</div>
+          <p>Valor Total:</p>
+          <button>Comprar</button>
+        </Carrinho>
+      </section>
+      <Footer>Footer</Footer>
+    </div>
   );
   };
 };
