@@ -7,19 +7,29 @@ import Cam5 from './img/cam5.png'
 import Cam6 from './img/cam6-.png'
 import Cam7 from './img/cam7-.png'
 import Cam8 from './img/cam8-.png'
-import Lupa from './img/lupa.png' 
+import Cam9 from './img/cam9.png'
+import Lupa from './img/lupa-white.png' 
+import Fundo from './img/galaxia2.png'
 import Usain from './img/RoboUsain.png'
 import CarrinhoImg from './img/carrinho.png'
+import Whats from './img/whats.png'
+import Twitter from './img/twitter.png'
+import Instagram from './img/instagram.png'
 
 import styled from 'styled-components'
 
 import Carrinho from './components/Carrinho/Carrinho';
+import Filtros from './components/Filtros/Filtros';
 
 
 const Container = styled.div `
   display: flex;
   flex-direction: column;
-  height: 95vh;
+  height: 100vh;
+  color: white;
+  background-image: url(${Fundo});
+  background-repeat: no-repeat;
+  background-size: cover;
 `
 
 const Section = styled.section `
@@ -27,16 +37,16 @@ const Section = styled.section `
   width: 100%;
   display: flex;
   gap: 20px;
-  padding: 6px;
   text-align: center;
-  border: 1px solid yellow;
 `
 const Header = styled.header`
-  border-bottom: 1px solid blue;
   height: 12%;
   display: flex;
   justify-content: space-evenly;
-  align-items: center
+  align-items: center;
+  
+  font-family: 'Caveat', cursive;
+  font-size: 2.2em;
 `
 
 const InputHeather = styled.input`
@@ -45,6 +55,11 @@ const InputHeather = styled.input`
   border-top: none;
   border-left: none;
   border-right: none;
+  background: transparent;
+  border-bottom: 1px solid white;
+  margin: 5px 15px;
+  padding: 8px;
+  color: white;
 `
 
 const Button2 = styled.button`
@@ -52,39 +67,18 @@ const Button2 = styled.button`
   border: none;
   width: 50px;
   height: 50px;
-  margin-left: -90px;
-  margin-bottom: 10px;
-img{
-  width: 30px;
-}
-:hover{
-  opacity: 0.5
-}
+  img{
+    width: 30px;
+  }
 `
 
 const Logo = styled.img`
-  width: 100px;
-  margin-top: 35px;
+  width: 140px;
+  margin-top: 70px;
 `
 
-const Filtros = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid green;
-  width: 15%;
-  padding-left: 8px;
-
-  p{
-    text-align: left;
-  }
-  input {
-    margin: 5px 15px;
-
-  }
-`
 const Produtos = styled.div`
   display: flex;
-  border: 1px solid red;
   width: 70%;
   overflow-y: scroll;
   flex-wrap: wrap;
@@ -92,10 +86,9 @@ const Produtos = styled.div`
 `
 const Button = styled.button`
   background: none;
-  border: 1px solid black;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  border: none;
   margin-right: 11px;
   background-repeat: no-repeat;
   box-sizing: border-box;
@@ -109,8 +102,6 @@ const Footer = styled.footer `
   position: fixed;
   width: 100%;
   bottom: 0;
-  border-top: 1px solid blue;
-  height: 12%;
   text-align: center;
   padding: 0;
 
@@ -139,6 +130,10 @@ const Card =styled.div `
     height: 85%;
     align-items: center;
   }
+
+  p, h3 {
+    color: black;
+  }
 `
 const OrdenarProdutos = styled.div`
   display: flex;
@@ -149,6 +144,11 @@ const OrdenarProdutos = styled.div`
 
   select {
     margin-left: 5px;
+    box-shadow: rgba(256, 256, 256, 0.4) 5px 5px, 
+                rgba(256, 256, 256, 0.3) 10px 10px, 
+                rgba(256, 256, 256, 0.2) 15px 15px, 
+                rgba(256, 256, 256, 0.1) 20px 20px, 
+                rgba(256, 256, 256, 0.05) 25px 25px;
   }
 `
 
@@ -158,80 +158,65 @@ class App extends React.Component {
     produtos: [
       {
         id: 1,
-        name: "Imagem 1",
+        name: "Astronauta meditando",
         value: 100.00,
         imageUrl: Cam1
       },
       {
         id: 2,
-        name: "Imagem 2",
+        name: "Astronauta entre planetas",
         value: 100.00,
         imageUrl: Cam2
       },
       {
         id: 3,
-        name: "Imagem 3",
+        name: "Astronauta com água viva",
         value: 300.00,
         imageUrl: Cam3
       },
       {
         id: 4,
-        name: "Imagem 4",
+        name: "Astronauta com criança",
         value: 400.00,
         imageUrl: Cam4
       },
       {
         id: 5,
-        name: "Imagem 5",
+        name: "Astronauta com bolhas",
         value: 500.00,
         imageUrl: Cam5
       },
       {
         id: 6,
-        name: "Imagem 6",
+        name: "Astronauta com sorvete",
         value: 600.00,
         imageUrl: Cam6
       },
       {
         id: 7,
-        name: "Imagem 7",
+        name: "Astronauta com balões",
         value: 700.00,
         imageUrl: Cam7
       },
       {
         id: 8,
-        name: "Imagem 8",
+        name: "Astronauta de skate",
         value: 800.00,
         imageUrl: Cam8
       },
       {
         id: 9,
-        name: "Imagem 9",
+        name: "Astronauta de bicicleta",
         value: 900.00,
-        imageUrl: Cam1
+        imageUrl: Cam9
       },
     ],
     valorMin: '',
-    valorMax: '',
+    valorMax: Infinity,
     buscador: '',
-    ordenador: '',
+    paramOrdem: '',
     valorTotal: 0,
-    addCarrinho: [
-      {
-        id: 8,
-        name: "Imagem 8",
-        value: 800.00,
-        imageUrl: Cam8,
-        quantidade: 1
-      },
-      {
-        id: 9,
-        name: "Imagem 9",
-        value: 900.00,
-        imageUrl: Cam1,
-        quantidade: 1
-      }
-    ] 
+    addCarrinho: [] 
   };
   
   atualizaValorMin = (event) => {
@@ -259,8 +244,6 @@ class App extends React.Component {
   };
 
   adicionarCarrinho = (produto) => {
-
-    console.log('prod---', produto)
     let idProduto = produto.id
 
     const produtoNoCarrinho = this.state.addCarrinho.find(item => idProduto === item.id)
@@ -280,8 +263,6 @@ class App extends React.Component {
       
 
     } else {
-      console.log('bbbb') 
-      /* const produtoAdicionar = this.state.produtos.find(produto => idProduto === produto.id)  */
       const novoProduto = {
         ...produto,
         quantidade: 1
@@ -293,7 +274,6 @@ class App extends React.Component {
   }
 
   removeProdutoCarrinho = (produtoId) => {
-    console.log('remover')
     const removeDoCarrinho = this.state.addCarrinho.map((produto) => {
       if(produto.id === produtoId) {
         return {
@@ -307,60 +287,93 @@ class App extends React.Component {
     this.setState({ addCarrinho: removeDoCarrinho })
   }
 
+  filtrosProdutos = () => {
+    console.log('aaaaa')
+    console.log('1', this.state.produtos.value >= this.state.valorMin || this.state.valorMin === "")
+    console.log('2',this.state.produtos.value <= this.state.valorMin || this.state.valorMax === "")
+    return(
+      this.state.produtos
+      .filter(produto => {
+        return (
+          produto.value >= this.state.valorMin ||
+          this.state.valorMin === ""
+        )
+      })
+      .filter(produto => {
+        return (
+          produto.value <= this.state.valorMax ||
+          this.state.valorMax === ""
+        )
+      })
+      .filter(produto => {
+        return (produto.name
+          .toLowerCase()
+          .includes(this.state.buscador.toLowerCase())
+        )
+      })
+      .sort((produtoAtual, proximoProduto) => {
+        return (
+          this.state.paramOrdem *
+          (produtoAtual.value - proximoProduto.value)
+        )
+      })
+    )
+  }
+
+  componentDidMount() {
+    const carrinhoString = localStorage.getItem("carrinho")
+    const carrinho = JSON.parse(carrinhoString)
+
+    this.setState({ addCarrinho: carrinho })
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("carrinho", JSON.stringify(this.state.addCarrinho))
+  }
+
   render() {
+    const produtosFiltrados = this.filtrosProdutos()
     return (
       <Container>
         <Header> 
           <Logo src={Usain} alt="Logo"/>
           <h1>Astrodev Store</h1>
-          <InputHeather 
-            type="text"
-            value={this.state.buscador} 
-            placeholder="Digite o nome do produto" 
-            onChange={this.state.atualizaBuscador}  
-          />
-          <Button2 onClick={() => this.state.atualizaBuscador}>
-            <img src= {Lupa} alt={'carrinho'} />
-          </Button2>
+          <div>
+            <InputHeather 
+              type="text"
+              value={this.state.buscador} 
+              placeholder="Digite o nome do produto" 
+              onChange={this.atualizaBuscador}  
+            />
+            <Button2>
+              <img src= {Lupa} alt='carrinho' />
+            </Button2>
+          </div>
+          
         </Header>
         <OrdenarProdutos>
-          <p>Quantidade de Produtos:</p>
+          <p>Quantidade de Produtos: {produtosFiltrados.length}</p>
           <div>
             <label>Ordenação:</label>
-            <select>
+            <select value={this.state.paramOrdem} onChange={this.atualizaOrdem}>
               <option value={1}>Crescente</option>
               <option value={-1}>Decrescente</option>
             </select>
           </div>
         </OrdenarProdutos>
       <Section>
-        <Filtros>
-          <h3>Filtros</h3>
-          <p>Valor Minimo:</p>
-          <input 
-          type="number"
-          value={this.state.valorMin} 
-          placeholder="Digite um valor mínimo" 
-          onChange={this.state.atualizaValorMin}
-           />
-          <p>Valor Maximo:</p>
-          <input 
-          type="number"
-          value={this.state.valorMax} 
-          placeholder="Digite um valor máximo" 
-          onChange={this.state.atualizaValorMax}
-           />
-          {/*<p>Busca por Nome:</p>
-          <input 
-          type="text"
-          value={this.state.buscador} 
-          placeholder="Digite o nome do produto" 
-          onChange={this.state.atualizaBuscador}  
-           /> */}
 
-        </Filtros>
+        <Filtros 
+          valorMin={this.state.valorMin}
+          valorMax={this.state.valorMax}
+          atualizaValorMax={this.atualizaValorMax} 
+          atualizaValorMin={this.atualizaValorMin}
+          filtrosProdutos={this.filtrosProdutos}
+        />
+        
         <Produtos>
-          {this.state.produtos.map((produto,index) => {
+          
+          {produtosFiltrados.map((produto,index) => {
             return (
               <div key={index}>
                 <Card>
@@ -373,7 +386,7 @@ class App extends React.Component {
             )
           } ) }
         </Produtos>
-
+        
         <Carrinho 
           produtosNoCarrinho={this.state.addCarrinho} 
           removeProdutoCarrinho={this.removeProdutoCarrinho}
@@ -382,9 +395,15 @@ class App extends React.Component {
       </Section>
       <Footer>
         <h3>Nos siga nas redes-sociais:</h3>
-        <a href="/" target="_blank"><img src= {CarrinhoImg} alt="" /></a>
-        <a href="/" target="_blank"><img src={CarrinhoImg} alt="" /></a>
-        <a href="/" target="_blank"><img src={CarrinhoImg} alt="" /></a>
+        <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+          <img src= {Whats} alt="Whatsapp" />
+        </a>
+        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+          <img src={Twitter} alt="Twitter" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <img src={Instagram} alt="Instagram" />
+        </a>
       </Footer>
     </Container>
   );
