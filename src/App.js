@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div `
 display: flex;
 flex-direction: column;
-height: 100vh;
+height: 95vh;
 `
 
 const Section = styled.section `
@@ -30,11 +30,12 @@ const Section = styled.section `
   width: 96vw;
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 6px;
+  text-align: center;
 `
 const Header = styled.header`
-  border: 1px solid blue;
-  height: 15%;
+  border-bottom: 1px solid blue;
+  height: 12%;
   display: flex;
   justify-content: space-evenly;
   align-items: center
@@ -64,9 +65,8 @@ img{
 `
 
 const Logo = styled.img`
-width: 50px;
-margin-left: 20px;
-margin-top: 5px;
+width: 100px;
+margin-top: 35px;
 `
 
 const Filtros = styled.div`
@@ -75,6 +75,10 @@ const Filtros = styled.div`
   border: 1px solid green;
   width: 15%;
   padding-left: 8px;
+
+  p{
+    text-align: left;
+  }
   input {
     margin: 5px 15px;
 
@@ -82,9 +86,9 @@ const Filtros = styled.div`
 `
 const Produtos = styled.div`
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 70%;
-  overflow: scroll;
+  overflow-y: scroll;
   flex-wrap: wrap;
   
 `
@@ -95,15 +99,31 @@ const Carrinho = styled.div`
   border: 1px solid purple;
   width: 15%;
   padding-left: 8px;
+  p{
+    text-align: left;
+  }
   button{
     margin: 15px;
   }
 `
 const Footer = styled.footer `
-border: 1px solid blue;
-height: 15%;
-`
+position: fixed;
+width: 100%;
+bottom: 0;
+border-top: 1px solid blue;
+height: 12%;
+text-align: center;
+padding: 0;
 
+h3 {
+  margin: 0;
+}
+img{
+    width: 38px;
+    padding: 3px; 
+    margin-top: 0;
+}
+`
 const Card =styled.div `
   justify-content: center;
   text-align: center;
@@ -111,18 +131,28 @@ const Card =styled.div `
   border-radius: 15px;
   padding-bottom: 15px;
   width: 230px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
+  box-shadow: 0px 5px 15px;  
   background-color: white;  
   font-weight:bold;
   
 img {
   width: 85%;
-  higth: 85%;
+  height: 85%;
   align-items: center;
   
 }
 `
+const OrdenarProdutos = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
 
+  select {
+    margin-left: 5px;
+  }
+`
 const Button = styled.button`
   background: none;
   border: 1px solid black;
@@ -270,6 +300,16 @@ class App extends React.Component {
            />
         <Button2 onClick={() => this.state.atualizaBuscador}><img src= {Lupa} alt='carrinho' /></Button2>
       </Header>
+      <OrdenarProdutos>
+              <p>Quantidade de Produtos:</p>
+              <div>
+                <label>Ordenação:</label>
+                <select>
+                  <option value={1}>Crescente</option>
+                  <option value={-1}>Decrescente</option>
+                </select>
+              </div>
+            </OrdenarProdutos>
       <Section className="main-container">
         <Filtros>
           <h3>Filtros</h3>
@@ -312,12 +352,17 @@ class App extends React.Component {
         </Produtos>
         <Carrinho>
           <h3>Carrinho</h3>
-          <div>Produtos</div>
+          <p>Produtos</p>
           <p>Valor Total:</p>
           <button>Comprar</button>
         </Carrinho>
       </Section>
-      <Footer>Footer</Footer>
+      <Footer>
+                <h3>Nos siga nas redes-sociais:</h3>
+            <a href="/" target="_blank"><img src= {CarrinhoImg}/></a>
+            <a href="/" target="_blank"><img src={CarrinhoImg}/></a>
+            <a href="/" target="_blank"><img src={CarrinhoImg}/></a>
+      </Footer>
     </Container>
   );
   };
