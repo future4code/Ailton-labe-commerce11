@@ -8,30 +8,28 @@ import Cam6 from './img/cam6-.png'
 import Cam7 from './img/cam7-.png'
 import Cam8 from './img/cam8-.png'
 import Lupa from './img/lupa.png' 
-import CarrinhoImg from './img/carrinho.png'
-import styled from 'styled-components'
 import Usain from './img/RoboUsain.png'
-import {createGlobalStyle} from 'styled-components';
+import CarrinhoImg from './img/carrinho.png'
 
-const GlobalStyle = createGlobalStyle`
-  margin:0 ;
-  padding: 0;
-  box-sizing: border-box;
-`
+import styled from 'styled-components'
+
+import Carrinho from './components/Carrinho/Carrinho';
+
 
 const Container = styled.div `
-display: flex;
-flex-direction: column;
-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
 `
 
 const Section = styled.section `
   height: 70%;
-  width: 96vw;
+  width: 100%;
   display: flex;
   gap: 20px;
   padding: 6px;
   text-align: center;
+  border: 1px solid yellow;
 `
 const Header = styled.header`
   border-bottom: 1px solid blue;
@@ -65,8 +63,8 @@ img{
 `
 
 const Logo = styled.img`
-width: 100px;
-margin-top: 35px;
+  width: 100px;
+  margin-top: 35px;
 `
 
 const Filtros = styled.div`
@@ -86,72 +84,11 @@ const Filtros = styled.div`
 `
 const Produtos = styled.div`
   display: flex;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   width: 70%;
   overflow-y: scroll;
   flex-wrap: wrap;
   
-`
-
-const Carrinho = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid purple;
-  width: 15%;
-  padding-left: 8px;
-  p{
-    text-align: left;
-  }
-  button{
-    margin: 15px;
-  }
-`
-const Footer = styled.footer `
-position: fixed;
-width: 100%;
-bottom: 0;
-border-top: 1px solid blue;
-height: 12%;
-text-align: center;
-padding: 0;
-
-h3 {
-  margin: 0;
-}
-img{
-    width: 38px;
-    padding: 3px; 
-    margin-top: 0;
-}
-`
-const Card =styled.div `
-  justify-content: center;
-  text-align: center;
-  margin: 20px 15px;
-  border-radius: 15px;
-  padding-bottom: 15px;
-  width: 230px;
-  box-shadow: 0px 5px 15px;  
-  background-color: white;  
-  font-weight:bold;
-  
-img {
-  width: 85%;
-  height: 85%;
-  align-items: center;
-  
-}
-`
-const OrdenarProdutos = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  font-weight: bold;
-  font-size: 20px;
-
-  select {
-    margin-left: 5px;
-  }
 `
 const Button = styled.button`
   background: none;
@@ -168,69 +105,133 @@ const Button = styled.button`
   }
 `
 
+const Footer = styled.footer `
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border-top: 1px solid blue;
+  height: 12%;
+  text-align: center;
+  padding: 0;
+
+  h3 {
+    margin: 0;
+  }
+  img{
+      width: 38px;
+      padding: 3px; 
+      margin-top: 0;
+  }
+`
+const Card =styled.div `
+  justify-content: center;
+  text-align: center;
+  margin: 20px 15px;
+  border-radius: 15px;
+  padding-bottom: 15px;
+  width: 230px;
+  box-shadow: 0px 5px 15px;  
+  background-color: white;  
+  font-weight:bold;
+  
+  img {
+    width: 85%;
+    height: 85%;
+    align-items: center;
+  }
+`
+const OrdenarProdutos = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+
+  select {
+    margin-left: 5px;
+  }
+`
+
+
 class App extends React.Component {
   state = {
-    produtos: [{
-      id: 1,
-      name: "Imagem 1",
-      value: 100.00,
-      imageUrl: Cam1
-    },
-    {
-      id: 2,
-      name: "Imagem 2",
-      value: 100.00,
-      imageUrl: Cam2
-    },
-    {
-      id: 3,
-      name: "Imagem 3",
-      value: 300.00,
-      imageUrl: Cam3
-    },
-    {
-      id: 4,
-      name: "Imagem 4",
-      value: 400.00,
-      imageUrl: Cam4
-    },
-    {
-      id: 5,
-      name: "Imagem 5",
-      value: 500.00,
-      imageUrl: Cam5
-    },
-    {
-      id: 6,
-      name: "Imagem 6",
-      value: 600.00,
-      imageUrl: Cam6
-    },
-    {
-      id: 7,
-      name: "Imagem 7",
-      value: 700.00,
-      imageUrl: Cam7
-    },
-    {
-      id: 8,
-      name: "Imagem 8",
-      value: 800.00,
-      imageUrl: Cam8
-    },
-    {
-      id: 9,
-      name: "Imagem 9",
-      value: 900.00,
-      imageUrl: Cam1
-    },
-  ],
-  valorMin: '',
-  valorMax: '',
-  buscador: '',
-  ordenador: '',
-  valorTotal: 0,
-  addCarrinho: [] 
+    produtos: [
+      {
+        id: 1,
+        name: "Imagem 1",
+        value: 100.00,
+        imageUrl: Cam1
+      },
+      {
+        id: 2,
+        name: "Imagem 2",
+        value: 100.00,
+        imageUrl: Cam2
+      },
+      {
+        id: 3,
+        name: "Imagem 3",
+        value: 300.00,
+        imageUrl: Cam3
+      },
+      {
+        id: 4,
+        name: "Imagem 4",
+        value: 400.00,
+        imageUrl: Cam4
+      },
+      {
+        id: 5,
+        name: "Imagem 5",
+        value: 500.00,
+        imageUrl: Cam5
+      },
+      {
+        id: 6,
+        name: "Imagem 6",
+        value: 600.00,
+        imageUrl: Cam6
+      },
+      {
+        id: 7,
+        name: "Imagem 7",
+        value: 700.00,
+        imageUrl: Cam7
+      },
+      {
+        id: 8,
+        name: "Imagem 8",
+        value: 800.00,
+        imageUrl: Cam8
+      },
+      {
+        id: 9,
+        name: "Imagem 9",
+        value: 900.00,
+        imageUrl: Cam1
+      },
+    ],
+    valorMin: '',
+    valorMax: '',
+    buscador: '',
+    ordenador: '',
+    valorTotal: 0,
+    addCarrinho: [
+      {
+        id: 8,
+        name: "Imagem 8",
+        value: 800.00,
+        imageUrl: Cam8,
+        quantidade: 1
+      },
+      {
+        id: 9,
+        name: "Imagem 9",
+        value: 900.00,
+        imageUrl: Cam1,
+        quantidade: 1
+      }
+    ] 
   };
   
   atualizaValorMin = (event) => {
@@ -258,59 +259,81 @@ class App extends React.Component {
   };
 
   adicionarCarrinho = (produto) => {
-    const carrinhoNovo = [...this.state.addCarrinho];
-    carrinhoNovo.push(produto);
-    this.setState({addCarrinho: carrinhoNovo});
-  }
-  
-/*   filtrosProdutos = () => {
-    return(
-      this.state.produtos
-      .filter(produto => {
-        return (
-          produto.value >= this.state.valorMin,
-          this.state.valorMin === ""
-        )
-      })
-      .filter(produto => {
-        return (
-          produto.value <= this.state.valorMax,
-          this.state.valorMax === ""
-        )
-      })
-      .filter(produto => {
-        return (produto.name
-          .toLowerCase()
-          .includes(this.state.buscador.toLowerCase())
-        )
-      })
-    )} */
 
-  render(){
+    console.log('prod---', produto)
+    let idProduto = produto.id
+
+    const produtoNoCarrinho = this.state.addCarrinho.find(item => idProduto === item.id)
+
+    if(produtoNoCarrinho) {
+      const novoProduto = this.state.addCarrinho.map(produtoAdd => {
+        if(idProduto === produtoAdd.id) {
+          return {
+            ...produtoAdd,
+            quantidade: produtoAdd.quantidade + 1
+          }
+        }
+        return produtoAdd
+      })
+
+      this.setState({ addCarrinho: novoProduto }) 
+      
+
+    } else {
+      console.log('bbbb') 
+      /* const produtoAdicionar = this.state.produtos.find(produto => idProduto === produto.id)  */
+      const novoProduto = {
+        ...produto,
+        quantidade: 1
+      }
+
+      const novoProdutoCarrinho = [...this.state.addCarrinho, novoProduto] 
+      this.setState({ addCarrinho: novoProdutoCarrinho }) 
+    }
+  }
+
+  removeProdutoCarrinho = (produtoId) => {
+    console.log('remover')
+    const removeDoCarrinho = this.state.addCarrinho.map((produto) => {
+      if(produto.id === produtoId) {
+        return {
+          ...produto,
+          quantidade: produto.quantidade - 1
+        }
+      }
+      return produto
+    }).filter((produto) => produto.quantidade > 0)
+
+    this.setState({ addCarrinho: removeDoCarrinho })
+  }
+
+  render() {
     return (
       <Container>
-      <Header> 
-        <Logo src={Usain}/>
-        <h1>Astrodev Store</h1>
-        <InputHeather 
-          type="text"
-          value={this.state.buscador} 
-          placeholder="Digite o nome do produto" 
-          onChange={this.state.atualizaBuscador}  
-           />
-        <Button2 onClick={() => this.state.atualizaBuscador}><img src= {Lupa} alt='carrinho' /></Button2>
-      </Header>
-      <OrdenarProdutos>
-              <p>Quantidade de Produtos:</p>
-              <div>
-                <label>Ordenação:</label>
-                <select>
-                  <option value={1}>Crescente</option>
-                  <option value={-1}>Decrescente</option>
-                </select>
-              </div>
-            </OrdenarProdutos>
-      <Section className="main-container">
+        <Header> 
+          <Logo src={Usain} alt="Logo"/>
+          <h1>Astrodev Store</h1>
+          <InputHeather 
+            type="text"
+            value={this.state.buscador} 
+            placeholder="Digite o nome do produto" 
+            onChange={this.state.atualizaBuscador}  
+          />
+          <Button2 onClick={() => this.state.atualizaBuscador}>
+            <img src= {Lupa} alt={'carrinho'} />
+          </Button2>
+        </Header>
+        <OrdenarProdutos>
+          <p>Quantidade de Produtos:</p>
+          <div>
+            <label>Ordenação:</label>
+            <select>
+              <option value={1}>Crescente</option>
+              <option value={-1}>Decrescente</option>
+            </select>
+          </div>
+        </OrdenarProdutos>
+      <Section>
         <Filtros>
           <h3>Filtros</h3>
           <p>Valor Minimo:</p>
@@ -327,7 +350,7 @@ class App extends React.Component {
           placeholder="Digite um valor máximo" 
           onChange={this.state.atualizaValorMax}
            />
-{/*           <p>Busca por Nome:</p>
+          {/*<p>Busca por Nome:</p>
           <input 
           type="text"
           value={this.state.buscador} 
@@ -337,31 +360,31 @@ class App extends React.Component {
 
         </Filtros>
         <Produtos>
-        {this.state.produtos.map((produto,index) => {
-          return (
-            <div key={index}>
-              <Card>
-              <img src={produto.imageUrl} alt={produto.name}/>
-              <p>{produto.name}</p>
-              <p>R$ {produto.value},00</p>
-              <Button onClick={() => this.adicionarCarrinho(produto)}><img src={CarrinhoImg} alt='carrinho'/></Button>
-              </Card>
-            </div>
-          )
-        } ) }
+          {this.state.produtos.map((produto,index) => {
+            return (
+              <div key={index}>
+                <Card>
+                  <img src={produto.imageUrl} alt={produto.name}/>
+                  <p>{produto.name}</p>
+                  <p>R$ {produto.value},00</p>
+                  <Button onClick={() => this.adicionarCarrinho(produto)}><img src={CarrinhoImg} alt='carrinho'/></Button>
+                </Card>
+              </div>
+            )
+          } ) }
         </Produtos>
-        <Carrinho>
-          <h3>Carrinho</h3>
-          <p>Produtos</p>
-          <p>Valor Total:</p>
-          <button>Comprar</button>
-        </Carrinho>
+
+        <Carrinho 
+          produtosNoCarrinho={this.state.addCarrinho} 
+          removeProdutoCarrinho={this.removeProdutoCarrinho}
+        />
+        
       </Section>
       <Footer>
-                <h3>Nos siga nas redes-sociais:</h3>
-            <a href="/" target="_blank"><img src= {CarrinhoImg}/></a>
-            <a href="/" target="_blank"><img src={CarrinhoImg}/></a>
-            <a href="/" target="_blank"><img src={CarrinhoImg}/></a>
+        <h3>Nos siga nas redes-sociais:</h3>
+        <a href="/" target="_blank"><img src= {CarrinhoImg} alt="" /></a>
+        <a href="/" target="_blank"><img src={CarrinhoImg} alt="" /></a>
+        <a href="/" target="_blank"><img src={CarrinhoImg} alt="" /></a>
       </Footer>
     </Container>
   );
