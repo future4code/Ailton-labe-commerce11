@@ -1,7 +1,7 @@
-## <center>🛒Projeto LabEcommerce - Atrodev Store🚀</center>
+<h1 align="center">🛒Projeto LabEcommerce - Atrodev Store🚀</h1>
 
 
-A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço
+<h4 align="center">A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço</h4>
 
 ### O que funciona
 - Home - Cards exibindo imagem, nome e preço dos produtos, mostrando todos os itens e com a opção de ordenação por ordem crescente ou decrescente de preço
