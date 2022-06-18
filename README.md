@@ -1,6 +1,6 @@
 ### 🛒Projeto LabEcommerce - Atrodev Store🚀
 
-A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço;
+A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço
 
 ### O que funciona
 - Rsponsividade mobile e desktop
