@@ -12,7 +12,7 @@
 - Desafio1: Salvar e Recuperar conteúdo do carrinho usando o LocalStorage
 - Desafio2: Layout e a usabilidade do site estilizados e melhorados
 - Desafio3: Funcionalidade extra - Em desenvolvimento
-- Rsponsividade mobile e desktop
+- Responsividade mobile e desktop
 
 ### Link Surge 
 http://
