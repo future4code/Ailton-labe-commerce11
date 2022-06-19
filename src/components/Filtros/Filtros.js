@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components'
-import Astronauta from '../../img/RoboBalao1.png'
+import React from "react";
+import styled from "styled-components";
+import Astronauta from "../../img/RoboBalao.png";
 
 const FiltrosContainer = styled.div`
   display: flex;
@@ -8,11 +8,10 @@ const FiltrosContainer = styled.div`
   width: 15%;
   color: white;
 
-  p{
+  p {
     text-align: left;
     font-weight: bold;
     padding-left: 10px;
-
   }
   input {
     background: transparent;
@@ -24,65 +23,63 @@ const FiltrosContainer = styled.div`
     line-height: 26px;
   }
   img {
-    margin-top: 70px;
-    width: 90%;
-   
+    margin-top: 60px;
+    width: 100%;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
     margin-top: 10px;
 
     div {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    margin: 0 auto;
-  } 
-  input {
-    margin: 0;
-    width: 100%;
-  }
-  p{
-    padding: 0;
-  }
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      margin: 0 auto;
+    }
+    input {
+      margin: 0;
+      width: 100%;
+    }
+    p {
+      padding: 0;
+    }
 
-  h3 {
-    display: none;
-  }
+    h3 {
+      display: none;
+    }
 
-  img {
-    display: none;
+    img {
+      display: none;
+    }
   }
-}
-  `
+`;
 
 class Filtros extends React.Component {
-  render (){
+  render() {
     return (
-    <FiltrosContainer>
-      <h3>Filtros</h3>
-      <div>
-      <p>Valor Mínimo:</p>
-      <input 
-        type="number"
-        value={this.props.valorMin} 
-        placeholder="Digite um valor mínimo" 
-        onChange={this.props.atualizaValorMin}
-      />
-      </div>
-      <div>
-      <p>Valor Máximo:</p>
-      <input 
-        type="number"
-        value={this.props.valorMax} 
-        placeholder="Digite um valor máximo" 
-        onChange={this.props.atualizaValorMax}
-      />
-      </div>
-      <img src={Astronauta} alt='Astronauta balão'/>
-    </FiltrosContainer>
-    
-  );
-}
+      <FiltrosContainer>
+        <h3>Filtros</h3>
+        <div>
+          <p>Valor Mínimo:</p>
+          <input
+            type="number"
+            value={this.props.valorMin}
+            placeholder="Digite um valor mínimo"
+            onChange={this.props.atualizaValorMin}
+          />
+        </div>
+        <div>
+          <p>Valor Máximo:</p>
+          <input
+            type="number"
+            value={this.props.valorMax}
+            placeholder="Digite um valor máximo"
+            onChange={this.props.atualizaValorMax}
+          />
+        </div>
+        <img src={Astronauta} alt="Astronauta balão" />
+      </FiltrosContainer>
+    );
+  }
 }
 
 export default Filtros;
