@@ -1,13 +1,13 @@
-<h1 align="center">🛒Projeto LabEcommerce - Atrodev Store🚀</h1>
+<h1 align="center">🛒Projeto LabEcommerce - Atrodev Store T-shirt🚀</h1>
 
 
 <h4 align="center">A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço</h4>
 
 ### O que funciona
 - Home - Cards exibindo imagem, nome e preço dos produtos, mostrando todos os itens e com a opção de ordenação por ordem crescente ou decrescente de preço
-- Filtro - Filtragem por nome ou valor minimo e maximo do produto
+- Filtros - Filtragem por nome ou valor minimo e maximo do produto
 - Produtos - Com botão que permite adicionar produtos ao carrinho
-- Carrinho - Mostrando todos os produtos e quantidades adicionadas, botão para remover os itens, valor total do carrinho e botão de compra que contem um alert de "Pedido Enviado!
+- Carrinho - Mostrando todos os produtos e quantidades adicionadas, botão para remover os itens, valor total do carrinho e botão de compra que contem um alert de "Pedido Enviado!"
 - Links externos para as supostas redes sociais funcionais
 - Desafio1: Salvar e Recuperar conteúdo do carrinho usando o LocalStorage
 - Desafio2: Layout e a usabilidade do site estilizados e melhorados
@@ -17,7 +17,6 @@
 http://six-hate.surge.sh
 
 ### Imagens
-
 
 ![Captura de tela de 2022-06-18 21-09-02](https://user-images.githubusercontent.com/104766367/174460834-9f867516-58f9-4981-afa3-86e0c0177d02.png)
 ![Captura de tela de 2022-06-18 21-09-46](https://user-images.githubusercontent.com/104766367/174460835-8847e83f-fd05-4149-8824-771f0b9db2ad.png)
