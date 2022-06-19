@@ -104,22 +104,6 @@ export const Button2 = styled.button`
   }
 `;
 
-export const LoginContainer = styled.a`
-  text-decoration: none;
-  img {
-    width: 40px;
-    padding: 0;
-  }
-
-  @media screen and (max-device-width: 480px) {
-    /*     display: inline; */
-    width: 100%;
-    img {
-      width: 30px;
-      padding-top: 0;
-    }
-  }
-`;
 // Ordenação
 export const OrdenarProdutos = styled.div`
   display: flex;
@@ -197,6 +181,9 @@ export const Card = styled.div`
     text-align: center;
     align-items: center;
     margin: 40px auto;
+    : hover{
+      width: 80%;
+    }
   }
 `;
 export const ImgCamiseta = styled.img`
