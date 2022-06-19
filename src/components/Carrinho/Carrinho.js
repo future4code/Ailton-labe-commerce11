@@ -68,16 +68,15 @@ const ImagemFinal = styled.img`
 
 class Carrinho extends React.Component {
   confirmacaoDeCompra = () => {
-    alert(`Pedido enviado!`);
+    alert(`Oba! Pedido enviado!`);
   };
+
 
   valorTotal = () => {
     let totalValor = 0;
-
     for (let produto of this.props.produtosNoCarrinho) {
       totalValor += produto.value * produto.quantidade;
     }
-
     return totalValor;
   };
 

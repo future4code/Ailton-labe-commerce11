@@ -183,9 +183,11 @@ export const Card = styled.div`
   box-shadow: 0px 5px 15px;
   background-color: white;
   font-weight: bold;
+  : hover{
+    width: 250px;
+  }
 
-  p,
-  h3 {
+  p, h3 {
     color: black;
   }
 
@@ -219,6 +221,11 @@ export const Button = styled.button`
   background-repeat: no-repeat;
   box-sizing: border-box;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 480px) {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  }
 `;
 // Footer
 export const Footer = styled.footer`

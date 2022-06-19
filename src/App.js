@@ -202,6 +202,7 @@ class App extends React.Component {
   }
 
   render() {
+    document.title = 'Astrodev T-shirt Store';
     const produtosFiltrados = this.filtrosProdutos();
     return (
       <Container>
