@@ -11,7 +11,6 @@
 - Links externos para as supostas redes sociais funcionais
 - Desafio1: Salvar e Recuperar conteúdo do carrinho usando o LocalStorage
 - Desafio2: Layout e a usabilidade do site estilizados e melhorados
-- Desafio3: Funcionalidade extra - Em desenvolvimento
 - Responsividade mobile e desktop
 
 ### Link Surge 
