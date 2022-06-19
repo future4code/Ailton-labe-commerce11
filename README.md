@@ -19,4 +19,9 @@ http://squalid-advice.surge.sh
 
 ### Imagens
 
-Em desenvolvimento
+
+![Captura de tela de 2022-06-18 21-09-02](https://user-images.githubusercontent.com/104766367/174460834-9f867516-58f9-4981-afa3-86e0c0177d02.png)
+![Captura de tela de 2022-06-18 21-09-46](https://user-images.githubusercontent.com/104766367/174460835-8847e83f-fd05-4149-8824-771f0b9db2ad.png)
+![Captura de tela de 2022-06-18 21-11-43](https://user-images.githubusercontent.com/104766367/174460836-66fc0ed6-e85d-432e-818f-8e9ec41e667f.png)
+![Captura de tela de 2022-06-18 21-11-58](https://user-images.githubusercontent.com/104766367/174460837-d4d10be6-c860-4941-a9c4-4872a15eb49c.png)
+![Captura de tela de 2022-06-18 21-12-00](https://user-images.githubusercontent.com/104766367/174460839-7c5e6b85-151b-427f-a7dd-ed01dc968978.png)
