@@ -1,4 +1,4 @@
-<h1 align="center">🛒Projeto LabEcommerce - Atrodev Store T-shirt🚀</h1>
+<h1 align="center">🛒Projeto LabEcommerce - Atrodev T-shirt Store🚀</h1>
 
 
 <h4 align="center">A Atrodev Store é um e-commerce de vendas de camisetas com estampas divertidas relacionadas ao espaço</h4>
